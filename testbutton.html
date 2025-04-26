@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thông tin liên hệ</title>
+    <script>
+        // Paste đoạn mã JavaScript vào đây
+        function downloadVCard(vcardData, filename = "lien_he.vcf") {
+            const blob = new Blob([vcardData], { type: "text/vcard" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        const vcardInfo = `BEGIN:VCARD
+VERSION:3.0
+N:Giang;;;;
+FN:Giang
+ORG:VinFast Samco Bình Tân
+TITLE:Nhân viên phụ kiện
+TEL;TYPE=CELL:(+84)833091307
+ADR;TYPE=WORK:;;Số 1135 Quốc Lộ 1A Tân Tạo Bình Tân;;;
+EMAIL:giangnvtsamco@gmail.com
+END:VCARD`;
+    </script>
+</head>
+
+<body>
+    <h1>Thông tin liên hệ của tôi</h1>
+    <button onclick="downloadVCard(vcardInfo, 'giang_lienhe.vcf')">Tải xuống vCard</button>
+</body>
+
+</html>
